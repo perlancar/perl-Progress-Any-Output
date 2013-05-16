@@ -4,6 +4,8 @@ use 5.010001;
 use strict;
 use warnings;
 
+# VERSION
+
 require Progress::Any;
 
 sub _set_or_add {
@@ -31,14 +33,14 @@ sub _set_or_add {
         my $outputpm = $output; $outputpm =~ s!::!/!g; $outputpm .= ".pm";
         require "Progress/Any/Output/$outputpm";
         no strict 'refs';
-        $outputo = "Progress::Any::Output::$output"->new(@args);
+        $outputo = "Progress::Any::Output::$output"->new(@_);
     }
 
     if ($which eq 'set') {
-        $outputs{$task} = [$outputo];
+        $Progress::Any::outputs{$task} = [$outputo];
     } else {
-        $outputs{$task} //= [];
-        push @{ $outputs{$task} }, $outputo;
+        $Progress::Any::outputs{$task} //= [];
+        push @{ $Progress::Any::outputs{$task} }, $outputo;
     }
 }
 
