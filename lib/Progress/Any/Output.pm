@@ -24,10 +24,6 @@ sub _set_or_add {
 
     my $task = $opts->{task} // "main";
 
-    # just so that the indicator gets created, if not yet. also, so that task
-    # syntax is checked.
-    Progress::Any->get_indicator(task => $task);
-
     my $outputo;
     {
         my $outputpm = $output; $outputpm =~ s!::!/!g; $outputpm .= ".pm";
