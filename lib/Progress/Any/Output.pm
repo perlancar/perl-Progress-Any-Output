@@ -20,9 +20,9 @@ sub _set_or_add {
     }
 
     my $output = shift or die "Please specify output name";
-    $output =~ /\A\w+(::\w+)*\z/ or die "Invalid output syntax '$output'";
+    $output =~ /\A(?:\w+(::\w+)*)?\z/ or die "Invalid output syntax '$output'";
 
-    my $task = $opts->{task} // "main";
+    my $task = $opts->{task} // "";
 
     my $outputo;
     {
