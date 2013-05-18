@@ -1,5 +1,13 @@
 Revision history for Progress-Any-Output
 
+0.03    2013-05-18 (SHARYANTO)
+
+        - Update to Progress::Any 0.08.
+
+        - By default set output for task='' instead of task='main', to be able
+          to capture all indicators' progress.
+
+
 0.02    2013-05-17 (SHARYANTO)
 
         [BUG FIXES]
