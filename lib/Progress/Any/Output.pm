@@ -25,7 +25,7 @@ sub _set_or_add {
     my $task = $opts->{task} // "";
 
     my $outputo;
-    {
+    unless (ref $outputo) {
         my $outputpm = $output; $outputpm =~ s!::!/!g; $outputpm .= ".pm";
         require "Progress/Any/Output/$outputpm";
         no strict 'refs';
@@ -38,6 +38,8 @@ sub _set_or_add {
         $Progress::Any::outputs{$task} //= [];
         push @{ $Progress::Any::outputs{$task} }, $outputo;
     }
+
+    $outputo;
 }
 
 sub set {
@@ -78,12 +80,16 @@ See L<Progress::Any> for overview.
 
 =head1 METHODS
 
-=head2 Progress::Any::Output->set([ \%opts ], $output[, @args])
+=head2 Progress::Any::Output->set([ \%opts ], $output[, @args]) => obj
 
 Set (or replace) output. Will load and instantiate
 C<Progress::Any::Output::$output>. To only set output for a certain (sub)task,
 set C<%opts> to C<< { task => $task } >>. C<@args> will be passed to output
 module's constructor.
+
+Return the instantiated object.
+
+If C<$output> is an object (a reference, really), it will be used as-is.
 
 =head2 Progress::Any::Output->add([ \%opts ], $output[, @args])
 
