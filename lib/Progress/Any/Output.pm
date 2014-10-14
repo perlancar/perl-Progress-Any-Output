@@ -1,10 +1,11 @@
 package Progress::Any::Output;
 
+# DATE
+# VERSION
+
 use 5.010001;
 use strict;
 use warnings;
-
-# VERSION
 
 require Progress::Any;
 
