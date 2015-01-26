@@ -9,6 +9,11 @@ use warnings;
 
 require Progress::Any;
 
+sub import {
+    my $self = shift;
+    __PACKAGE__->set(@_) if @_;
+}
+
 sub _set_or_add {
     my $class = shift;
     my $which = shift;
@@ -63,15 +68,25 @@ In your application:
  use Progress::Any::Output;
  Progress::Any::Output->set('TermProgressBarColor');
 
+or:
+
+ use Progress::Any::Output 'TermProgressBarColor';
+
 To give parameters to output:
 
+ use Progress::Any::Output;
  Progress::Any::Output->set('TermProgressBarColor', width=>50, ...);
+
+or:
+
+ use Progress::Any::Output 'TermProgressBarColor', width=>50, ...;
 
 To assign output to a certain (sub)task:
 
+ use Progress::Any::Output;
  Progress::Any::Output->set({task=>'main.download'}, 'TermMessage');
 
-To add additional output, use add() instead of set().
+To add additional output, use C<add()> instead of C<set()>.
 
 
 =head1 DESCRIPTION
@@ -102,4 +117,3 @@ Like set(), but will add output instead of replace existing one(s).
 L<Progress::Any>
 
 =cut
-
