@@ -1,5 +1,10 @@
 Revision history for Progress-Any-Output
 
+0.05    2015-01-26 (PERLANCAR)
+
+	- Allow import parameter to set(), like in Log::Any::Adapter.
+
+
 0.04    2014-10-14 (PERLANCAR)
 
         - Allow passing reference (object).
